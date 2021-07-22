@@ -1,9 +1,9 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import App from "./App";
+import Routes from "./Routes";
 
-describe("App", () => {
+describe("Routes", () => {
   test("should render initially", () => {
-    render(<App />);
+    render(<Routes />);
   });
 });

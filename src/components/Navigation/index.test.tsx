@@ -1,7 +1,14 @@
 import React from "react";
 import { render } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
 import Navigation from "./index";
 
-test("should render initially", () => {
-  render(<Navigation />);
+describe("Navigation", () => {
+  test("should render initially", () => {
+    render(
+      <MemoryRouter initialEntries={["/"]}>
+        <Navigation />
+      </MemoryRouter>
+    );
+  });
 });
