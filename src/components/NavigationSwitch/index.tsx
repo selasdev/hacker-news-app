@@ -14,7 +14,7 @@ type NavigationSwitchProps = {
 
 const NavigationSwitch = ({ pages }: NavigationSwitchProps) => {
   return (
-    <MainContainer>
+    <MainContainer elements={pages.length}>
       {pages.map((page, idx) => (
         <NavigationSwitchItem
           path={page.path}

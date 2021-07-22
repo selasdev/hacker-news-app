@@ -5,8 +5,8 @@ import { Nav } from "./styles";
 import sitemap from "constants/sitemap";
 
 const pages = [
-  { path: sitemap.home.path, title: "" },
-  { path: sitemap.faves.path, title: "" },
+  { path: sitemap.home.path, title: "All" },
+  { path: sitemap.faves.path, title: "My faves" },
 ];
 
 const Navigation = () => {
