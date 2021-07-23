@@ -39,8 +39,8 @@ export const stylesControl = (styles: any, { isFocused, menuIsOpen }: any) =>
   isFocused || menuIsOpen
     ? {
         ...styles,
-        border: "1px solid black !important",
-        boxShadow: "0 0 0 1px solid !important",
+        border: "1px solid #2e2e2e !important",
+        boxShadow: "0 0 0 1px #2e2e2e !important",
         borderRadius: "4px",
       }
     : { ...styles, borderRadius: "4px" };
@@ -57,6 +57,6 @@ export const getOption = (value: string | null) => {
       return options[2];
 
     default:
-      return options[0];
+      return null;
   }
 };

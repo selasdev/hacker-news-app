@@ -3,6 +3,14 @@ import Select from "react-select";
 
 export const StyledSelect = styled(Select)`
   width: 240px;
+  div div div {
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.57;
+    letter-spacing: normal;
+    color: #343434;
+  }
   div div span {
     display: none;
   }

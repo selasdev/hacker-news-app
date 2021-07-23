@@ -13,6 +13,7 @@ const FilterDropdown = () => {
   const { currentFilter, setCurrentFilter } = useFilter();
 
   const handleChange = (values: OptionType) => {
+    console.log(handleChange);
     window.localStorage.setItem("filter", values.value);
     setCurrentFilter(values);
   };
