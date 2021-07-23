@@ -1,14 +1,17 @@
 import React from "react";
-import Routes from "containers/Routes";
+import { QueryClientProvider, QueryClient } from "react-query";
 
+import Routes from "containers/Routes";
 import Header from "components/Header";
+
+const queryClient = new QueryClient();
 
 const App = () => {
   return (
-    <React.Fragment>
+    <QueryClientProvider client={queryClient}>
       <Header />
       <Routes />
-    </React.Fragment>
+    </QueryClientProvider>
   );
 };
 
