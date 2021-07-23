@@ -44,3 +44,19 @@ export const stylesControl = (styles: any, { isFocused, menuIsOpen }: any) =>
         borderRadius: "4px",
       }
     : { ...styles, borderRadius: "4px" };
+
+export const getOption = (value: string | null) => {
+  switch (value) {
+    case "angular":
+      return options[0];
+
+    case "react":
+      return options[1];
+
+    case "vuejs":
+      return options[2];
+
+    default:
+      return options[0];
+  }
+};
