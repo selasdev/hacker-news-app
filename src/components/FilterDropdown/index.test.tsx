@@ -28,8 +28,8 @@ describe("FilterDropdown page", () => {
 
     userEvent.click(reactOption);
 
-    const angularSelection = screen.queryByText("Select your news");
+    const emptySelection = screen.queryByText("Select your news");
 
-    expect(angularSelection).toBeNull();
+    expect(emptySelection).toBeNull();
   });
 });
