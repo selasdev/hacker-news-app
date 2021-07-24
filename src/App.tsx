@@ -1,14 +1,23 @@
 import React from "react";
-import Routes from "containers/Routes";
+import { QueryClientProvider, QueryClient } from "react-query";
+import FilterProvider from "contexts/FilterContext";
+import FaveProvider from "contexts/FaveContext";
 
+import Routes from "containers/Routes";
 import Header from "components/Header";
+
+const queryClient = new QueryClient();
 
 const App = () => {
   return (
-    <React.Fragment>
+    <QueryClientProvider client={queryClient}>
       <Header />
-      <Routes />
-    </React.Fragment>
+      <FilterProvider>
+        <FaveProvider>
+          <Routes />
+        </FaveProvider>
+      </FilterProvider>
+    </QueryClientProvider>
   );
 };
 
