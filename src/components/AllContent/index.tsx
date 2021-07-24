@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { useQueryClient } from "react-query";
 import useQueryStories from "hooks/useQueryStories";
+
+import StoriesRenderer from "components/StoriesRenderer";
+
 import { StoriesContainer } from "./styles";
 import { formatData } from "./utils";
 
@@ -35,12 +38,10 @@ const AllContent = () => {
       </StoriesContainer>
     );
   } else {
-    //@ts-ignore
-    console.log(formatData(data));
-
     return (
       <StoriesContainer data-testid="story-loaded-container">
-        ASDADS
+        {/*@ts-ignore*/}
+        <StoriesRenderer stories={formatData(data)} />
         {hasNextPage && !isFetching ? (
           <button onClick={loadMore}>refetch</button>
         ) : null}
