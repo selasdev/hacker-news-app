@@ -4,7 +4,6 @@ export const StoriesGrid = styled.div`
   display: grid;
   grid-row-gap: 40px;
   grid-column-gap: 30px;
-  justify-content: center;
   grid-template-columns: repeat(auto-fill, 550px);
 
   @media (max-width: 850px) {
