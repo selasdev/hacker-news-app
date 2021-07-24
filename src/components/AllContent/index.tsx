@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useQueryClient } from "react-query";
 import useQueryStories from "hooks/useQueryStories";
+import Loading from "components/Loading";
+import Error from "components/Error";
 
 import StoriesRenderer from "components/StoriesRenderer";
 
@@ -26,7 +28,7 @@ const AllContent = () => {
   if (isLoading) {
     return (
       <StoriesContainer data-testid="story-loading-container">
-        LOADING
+        <Loading tall={true} />
       </StoriesContainer>
     );
   } else if (error) {
@@ -34,7 +36,7 @@ const AllContent = () => {
 
     return (
       <StoriesContainer data-testid="story-error-container">
-        error
+        <Error />
       </StoriesContainer>
     );
   } else {
