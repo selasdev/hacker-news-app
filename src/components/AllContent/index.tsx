@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useQueryClient } from "react-query";
 import useQueryStories from "hooks/useQueryStories";
 import { StoriesContainer } from "./styles";
+import { formatData } from "./utils";
 
 const AllContent = () => {
   const { isLoading, error, data, hasNextPage, fetchNextPage, isFetching } =
@@ -34,7 +35,8 @@ const AllContent = () => {
       </StoriesContainer>
     );
   } else {
-    console.log(data);
+    //@ts-ignore
+    console.log(formatData(data));
 
     return (
       <StoriesContainer data-testid="story-loaded-container">
