@@ -1,15 +1,15 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import { QueryClientProvider, QueryClient } from "react-query";
-import All from "./index";
+import Routes from "./Routes";
 
 const queryClient = new QueryClient();
 
-describe("All page", () => {
+describe("Routes", () => {
   test("should render initially", () => {
     render(
       <QueryClientProvider client={queryClient}>
-        <All />
+        <Routes />
       </QueryClientProvider>
     );
   });
