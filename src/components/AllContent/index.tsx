@@ -1,17 +1,27 @@
 import React, { useEffect } from "react";
 import { useQueryClient } from "react-query";
 import useQueryStories from "hooks/useQueryStories";
+import { useInView } from "react-intersection-observer";
+
 import Loading from "components/Loading";
 import Error from "components/Error";
-
 import StoriesRenderer from "components/StoriesRenderer";
 
 import { StoriesContainer } from "./styles";
 import { formatData } from "./utils";
 
-const AllContent = () => {
+type AllContentProps = {
+  testByPass?: boolean;
+};
+
+const AllContent = ({ testByPass = false }: AllContentProps) => {
   const { isLoading, error, data, hasNextPage, fetchNextPage, isFetching } =
     useQueryStories();
+
+  const { ref, inView } = useInView({
+    trackVisibility: true,
+    delay: 100,
+  });
 
   const queryClient = useQueryClient();
 
@@ -21,9 +31,11 @@ const AllContent = () => {
     };
   }, []); //eslint-disable-line
 
-  const loadMore = () => {
-    fetchNextPage();
-  };
+  useEffect(() => {
+    if (inView && !isFetching) {
+      fetchNextPage();
+    }
+  }, [inView, isFetching, fetchNextPage]);
 
   if (isLoading) {
     return (
@@ -44,8 +56,10 @@ const AllContent = () => {
       <StoriesContainer data-testid="story-loaded-container">
         {/*@ts-ignore*/}
         <StoriesRenderer stories={formatData(data)} />
-        {hasNextPage && !isFetching ? (
-          <button onClick={loadMore}>refetch</button>
+        {hasNextPage || testByPass ? (
+          <div ref={ref}>
+            <Loading tall={false} />
+          </div>
         ) : null}
       </StoriesContainer>
     );
