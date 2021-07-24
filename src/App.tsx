@@ -1,6 +1,7 @@
 import React from "react";
 import { QueryClientProvider, QueryClient } from "react-query";
 import FilterProvider from "contexts/FilterContext";
+import FaveProvider from "contexts/FaveContext";
 
 import Routes from "containers/Routes";
 import Header from "components/Header";
@@ -12,7 +13,9 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <Header />
       <FilterProvider>
-        <Routes />
+        <FaveProvider>
+          <Routes />
+        </FaveProvider>
       </FilterProvider>
     </QueryClientProvider>
   );

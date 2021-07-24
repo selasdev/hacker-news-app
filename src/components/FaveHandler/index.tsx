@@ -1,4 +1,5 @@
 import React from "react";
+import { useFave } from "contexts/FaveContext";
 
 import { StoryCardProps } from "components/StoryCard";
 
@@ -16,12 +17,21 @@ import emptyHeartSrc from "assets/images/heart-empty.svg";
 type FaveHandlerProps = {} & StoryCardProps;
 
 const FaveHandler = ({ story }: FaveHandlerProps) => {
-  const [isFavorite, setIsFavorite] = React.useState<boolean>(false);
+  const { currentFaves, addCurrentFave, deleteCurrentFave } = useFave();
+  const [isFavorite, setIsFavorite] = React.useState<boolean>(
+    currentFaves.some((fave) => fave.id === story.id)
+  );
   const [isTouched, setIsTouched] = React.useState<boolean>(false);
 
   const favoriteHandler = () => {
     setIsTouched(true);
-    setIsFavorite((currentFave) => !currentFave);
+    if (isFavorite) {
+      setIsFavorite(false);
+      deleteCurrentFave(story);
+    } else {
+      setIsFavorite(true);
+      addCurrentFave(story);
+    }
   };
 
   return (
