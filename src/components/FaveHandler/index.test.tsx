@@ -12,7 +12,7 @@ const StoryMock = {
   story_url: "url",
 };
 
-describe("NavigationSwitchItem", () => {
+describe("FaveHandler", () => {
   test("should render initially", () => {
     render(<FaveHandler story={StoryMock} />);
 
