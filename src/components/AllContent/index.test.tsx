@@ -2,6 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import { QueryClientProvider, QueryClient } from "react-query";
 import axios, { AxiosResponse } from "axios";
+import { mockAllIsIntersecting } from "react-intersection-observer/test-utils";
 import AllContent from "./index";
 
 const queryClient = new QueryClient();
@@ -43,5 +44,27 @@ describe("AllContent", () => {
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     expect(screen.getByTestId("story-loaded-container")).toBeInTheDocument();
+
+    expect(mockedAxios).toHaveBeenCalledTimes(1);
+  });
+
+  test("should run fetchNextPage", async () => {
+    mockedAxios.get.mockResolvedValueOnce(mockedOkResponse);
+
+    render(
+      <QueryClientProvider client={queryClient}>
+        <AllContent testByPass={true} />
+      </QueryClientProvider>
+    );
+
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    expect(screen.getByTestId("story-loaded-container")).toBeInTheDocument();
+
+    expect(mockedAxios).toHaveBeenCalledTimes(1);
+
+    mockAllIsIntersecting(true);
+
+    expect(mockedAxios).toHaveBeenCalledTimes(2);
   });
 });
