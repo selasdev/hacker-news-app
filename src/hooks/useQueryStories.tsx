@@ -2,6 +2,15 @@ import { useFilter } from "contexts/FilterContext";
 import { useInfiniteQuery } from "react-query";
 import axios from "axios";
 
+type HelperDataType = {
+  page: number;
+  nbPages: number;
+};
+
+type PageHelpersInput = {
+  data: HelperDataType;
+};
+
 export const getStories = (currentFilter: string | undefined, page: number) => {
   if (currentFilter) {
     return axios(
@@ -12,6 +21,22 @@ export const getStories = (currentFilter: string | undefined, page: number) => {
   }
 };
 
+export const getPreviousPageHelper = (firstPage: PageHelpersInput) => {
+  if (firstPage?.data?.page > 0) {
+    return firstPage?.data?.page - 1;
+  } else {
+    return false;
+  }
+};
+
+export const getNextPageHelper = (lastPage: PageHelpersInput) => {
+  if (lastPage?.data?.page < lastPage?.data?.nbPages - 1) {
+    return lastPage?.data?.page + 1;
+  } else {
+    return false;
+  }
+};
+
 const useQueryStories = () => {
   const { currentFilter } = useFilter();
 
@@ -19,20 +44,8 @@ const useQueryStories = () => {
     "stories",
     ({ pageParam = 0 }) => getStories(currentFilter?.value, pageParam),
     {
-      getPreviousPageParam: (firstPage) => {
-        if (firstPage?.data?.page > 0) {
-          return firstPage?.data?.page - 1;
-        } else {
-          return false;
-        }
-      },
-      getNextPageParam: (lastPage) => {
-        if (lastPage?.data?.page < lastPage?.data?.nbPages - 1) {
-          return lastPage?.data?.page + 1;
-        } else {
-          return false;
-        }
-      },
+      getPreviousPageParam: getPreviousPageHelper,
+      getNextPageParam: getNextPageHelper,
     }
   );
 
