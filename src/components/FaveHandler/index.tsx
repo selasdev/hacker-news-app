@@ -35,7 +35,10 @@ const FaveHandler = ({ story }: FaveHandlerProps) => {
   };
 
   return (
-    <MainHeartContainer onClick={favoriteHandler}>
+    <MainHeartContainer
+      data-testid="story-card-fave-handler"
+      onClick={favoriteHandler}
+    >
       <FilledHeartContainer>
         <FilledHeartElement
           favorite={isFavorite}
