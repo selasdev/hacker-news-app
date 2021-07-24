@@ -4,6 +4,7 @@ import StoryCard from "components/StoryCard";
 import { StoriesGrid } from "./styles";
 
 export type StoryType = {
+  id: number;
   author: string;
   created_at: string;
   story_title: string;
@@ -18,7 +19,7 @@ const StoriesRenderer = ({ stories }: StoriesRendererProps) => {
   return (
     <StoriesGrid>
       {stories.map((story) => (
-        <StoryCard story={story} />
+        <StoryCard key={story.id} story={story} />
       ))}
     </StoriesGrid>
   );

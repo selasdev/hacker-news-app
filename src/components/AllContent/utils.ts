@@ -1,4 +1,5 @@
 type HitType = {
+  objectID: number;
   author: string;
   story_title: string;
   story_url: string;
@@ -27,9 +28,9 @@ export const formatHits = (hits: Array<HitType>) => {
         hit?.story_title &&
         hit?.story_url
       ) {
-        const { author, created_at, story_title, story_url } = hit;
+        const { objectID, author, created_at, story_title, story_url } = hit;
 
-        return { author, created_at, story_title, story_url };
+        return { id: objectID, author, created_at, story_title, story_url };
       } else {
         return undefined;
       }
