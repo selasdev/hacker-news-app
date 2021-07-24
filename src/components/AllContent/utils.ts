@@ -21,9 +21,14 @@ type DataType = {
 export const formatHits = (hits: Array<HitType>) => {
   return hits
     .map((hit) => {
-      const { author, created_at, story_title, story_url } = hit;
+      if (
+        hit?.author &&
+        hit?.created_at &&
+        hit?.story_title &&
+        hit?.story_url
+      ) {
+        const { author, created_at, story_title, story_url } = hit;
 
-      if (hit.author && hit.created_at && hit.story_title && hit.story_url) {
         return { author, created_at, story_title, story_url };
       } else {
         return undefined;
@@ -33,7 +38,7 @@ export const formatHits = (hits: Array<HitType>) => {
 };
 
 export const getHits = (data: DataType) => {
-  const hits = data.pages.map((page) => page.data.hits).flat(2);
+  const hits = data.pages.map((page) => page?.data?.hits).flat(2);
 
   return hits;
 };
