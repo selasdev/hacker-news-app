@@ -20,14 +20,24 @@ const AllContent = () => {
   };
 
   if (isLoading) {
-    return <StoriesContainer>LOADING</StoriesContainer>;
+    return (
+      <StoriesContainer data-testid="story-loading-container">
+        LOADING
+      </StoriesContainer>
+    );
   } else if (error) {
     console.error(error);
-    return <StoriesContainer>error</StoriesContainer>;
+
+    return (
+      <StoriesContainer data-testid="story-error-container">
+        error
+      </StoriesContainer>
+    );
   } else {
     console.log(data);
+
     return (
-      <StoriesContainer>
+      <StoriesContainer data-testid="story-loaded-container">
         ASDADS
         {hasNextPage && !isFetching ? (
           <button onClick={loadMore}>refetch</button>

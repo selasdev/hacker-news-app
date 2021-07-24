@@ -11,13 +11,24 @@ type PageHelpersInput = {
   data: HelperDataType;
 };
 
-export const getStories = (currentFilter: string | undefined, page: number) => {
+export const getStories = async (
+  currentFilter: string | undefined,
+  page: number
+) => {
   if (currentFilter) {
-    return axios(
+    const resp = await axios(
       `https://hn.algolia.com/api/v1/search_by_date?query=${currentFilter}&page=${page}`
     );
+
+    console.log(JSON.stringify(resp));
+    return resp;
   } else {
-    return axios(`https://hn.algolia.com/api/v1/search_by_date?page=${page}`);
+    const resp = await axios(
+      `https://hn.algolia.com/api/v1/search_by_date?page=${page}`
+    );
+
+    console.log(JSON.stringify(resp));
+    return resp;
   }
 };
 
