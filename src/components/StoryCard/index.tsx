@@ -2,6 +2,7 @@ import React from "react";
 import { StoryType } from "components/StoriesRenderer";
 import * as timeago from "timeago.js";
 
+import FaveHandler from "components/FaveHandler";
 import {
   Card,
   StoryInfoContainer,
@@ -14,7 +15,7 @@ import {
 } from "./styles";
 import ClockSrc from "assets/images/clock.svg";
 
-type StoryCardProps = {
+export type StoryCardProps = {
   story: StoryType;
 };
 
@@ -36,7 +37,9 @@ const StoryCard = ({ story }: StoryCardProps) => {
           <StoryTitleText>{story.story_title}</StoryTitleText>
         </StoryInfoLink>
       </StoryInfoContainer>
-      <StoryFaveContainer></StoryFaveContainer>
+      <StoryFaveContainer>
+        <FaveHandler story={story} />
+      </StoryFaveContainer>
     </Card>
   );
 };
