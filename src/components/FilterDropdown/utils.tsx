@@ -16,7 +16,7 @@ export const options = [
     ),
   },
   {
-    value: "react",
+    value: "reactjs",
     label: (
       <SelectItemContainer>
         <SelectItemImage src={ReactLogo} alt="React logo" />
@@ -50,7 +50,7 @@ export const getOption = (value: string | null) => {
     case "angular":
       return options[0];
 
-    case "react":
+    case "reactjs":
       return options[1];
 
     case "vuejs":
